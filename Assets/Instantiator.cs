@@ -1,31 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Instantiator : MonoBehaviour
 {
+    public Text txtUserCloneAmount;
     public GameObject objectToClone;
+    public int cloneAmount;
+    GameObject clon;
     
-    // Start is called before the first frame update
-    void Start()
+    public void MultiInstantiate()
     {
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void TripleInstantiate()
-    {
-        int counter = 0;
-        while (counter < 3)
+        if (txtUserCloneAmount.text != "")
         {
-            Instantiate(objectToClone);
-            counter++;
+            cloneAmount = int.Parse(txtUserCloneAmount.text);
+        }
+        else
+        {
+            Debug.Log("El campo no puede estar vacio");
+        }
+
+        for (int i = 0; i<cloneAmount; i++)
+        {
+            clon = Instantiate(objectToClone);
+            Destroy(clon,2);
         }
     }
 }
